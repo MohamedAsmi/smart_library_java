@@ -12,7 +12,7 @@ public class KU2534814DatabaseConnection {
     private static Connection connection = null;
 
     private KU2534814DatabaseConnection() {
-        // Private constructor to prevent instantiation
+        
     }
 
     public static Connection getConnection() {
@@ -37,8 +37,7 @@ public class KU2534814DatabaseConnection {
     private static void initializeDatabase() {
         try {
             Statement stmt = connection.createStatement();
-            
-            // Create books table
+    
             String createBooksTable = "CREATE TABLE IF NOT EXISTS books (" +
                 "id INT PRIMARY KEY, " +
                 "isbn VARCHAR(20) UNIQUE, " +
@@ -47,8 +46,7 @@ public class KU2534814DatabaseConnection {
                 "price DOUBLE" +
                 ")";
             stmt.executeUpdate(createBooksTable);
-            
-            // Create users table
+
             String createUsersTable = "CREATE TABLE IF NOT EXISTS users (" +
                 "id INT PRIMARY KEY, " +
                 "name VARCHAR(255), " +
@@ -56,8 +54,7 @@ public class KU2534814DatabaseConnection {
                 "user_type VARCHAR(50)" +
                 ")";
             stmt.executeUpdate(createUsersTable);
-            
-            // Create transactions table
+
             String createTransactionsTable = "CREATE TABLE IF NOT EXISTS transactions (" +
                 "id INT AUTO_INCREMENT PRIMARY KEY, " +
                 "book_id INT, " +

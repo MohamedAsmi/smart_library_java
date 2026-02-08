@@ -22,15 +22,14 @@ public class KU2534814BorrowTransaction {
         this.fineAmount = 0.0;
     }
 
-    // Check if transaction is overdue
+
     public boolean isOverdue() {
         if (returnDate != null) {
-            return false; // Already returned
+            return false; 
         }
         return LocalDate.now().isAfter(dueDate);
     }
 
-    // Calculate days overdue
     public int getDaysOverdue() {
         if (!isOverdue()) {
             return 0;
@@ -39,7 +38,6 @@ public class KU2534814BorrowTransaction {
         return (int) java.time.temporal.ChronoUnit.DAYS.between(dueDate, checkDate);
     }
 
-    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -96,7 +94,6 @@ public class KU2534814BorrowTransaction {
     }
 
     public String getStatus() {
-        // Update status based on current state
         if (isOverdue() && returnDate == null) {
             return "Overdue";
         }
