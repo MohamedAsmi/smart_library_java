@@ -57,7 +57,7 @@ public class KU2534814ReservationManager {
                 int reservationId = rs.getInt(1);
                 
                 // Update book status
-                String updateSql = "UPDATE books SET availability_status = 'Reserved' WHERE id = ?";
+                String updateSql = "UPDATE books SET status = 'Reserved' WHERE id = ?";
                 PreparedStatement updateStmt = connection.prepareStatement(updateSql);
                 updateStmt.setInt(1, bookId);
                 updateStmt.executeUpdate();
@@ -105,7 +105,7 @@ public class KU2534814ReservationManager {
 
                 if (checkRs.next() && checkRs.getInt("count") == 0) {
                     // No other reservations, set book to available
-                    String updateSql = "UPDATE books SET availability_status = 'Available' WHERE id = ?";
+                    String updateSql = "UPDATE books SET status = 'Available' WHERE id = ?";
                     PreparedStatement updateStmt = connection.prepareStatement(updateSql);
                     updateStmt.setInt(1, bookId);
                     updateStmt.executeUpdate();
@@ -205,7 +205,7 @@ public class KU2534814ReservationManager {
                 
                 // Update book statuses for expired reservations
                 String updateSql = "UPDATE books b " +
-                                 "SET b.availability_status = 'Available' " +
+                                 "SET b.status = 'Available' " +
                                  "WHERE b.id IN (" +
                                  "  SELECT r.book_id FROM reservations r " +
                                  "  WHERE r.status = 'Expired' " +
